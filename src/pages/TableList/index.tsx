@@ -1,6 +1,6 @@
 import { addRule, removeRule, rule, updateRule } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
+import type { ActionType, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
   ModalForm,
@@ -104,7 +104,12 @@ const TableList: React.FC = () => {
    * @zh-CN 国际化配置
    * */
 
-  const columns: ProColumns<API.RuleListItem>[] = [
+  const columns: ({ dataIndex: string; tip: string; title: string; render: (dom, entity) => JSX.Element } | { dataIndex: string; valueType: string; title: string } | { sorter: boolean; dataIndex: string; hideInForm: boolean; title: string; renderText: (val: string) => string } | { dataIndex: string; valueEnum: { "0": { text: string; status: string }; "1": { text: string; status: string }; "2": { text: string; status: string }; "3": { text: string; status: string } }; hideInForm: boolean; title: string } | {
+    sorter: boolean; dataIndex: string; valueType: string; renderFormItem: (item, {
+      defaultRender,
+      ...rest
+    }: { defaultRender: any; [p: string]: any }, form) => (boolean | JSX.Element); title: string
+  } | { dataIndex: string; valueType: string; title: string; render: (_, record) => JSX.Element[] })[] = [
     {
       title: '规则名称',
       dataIndex: 'name',
@@ -214,7 +219,7 @@ const TableList: React.FC = () => {
           </Button>,
         ]}
         request={rule}
-        columns={columns}
+        // columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
             setSelectedRows(selectedRows);
