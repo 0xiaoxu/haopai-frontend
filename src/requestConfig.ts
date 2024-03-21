@@ -1,4 +1,4 @@
-﻿﻿import type { RequestOptions } from '@@/plugin-request/request';
+﻿import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
 
 // 与后端约定的响应数据格式
