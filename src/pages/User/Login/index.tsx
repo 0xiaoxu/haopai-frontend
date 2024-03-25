@@ -108,8 +108,10 @@ const Login: React.FC = () => {
         ...values,
       });
       if (res.data) {
-        const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        //TODO 判断之前的url是否是登录页面，如果是，跳转到首页，否则再跳转到指定页面
+        // const urlParams = new URL(window.location.href).searchParams;
+        // history.push(urlParams.get('redirect') || '/');
+        history.push( '/');
         setInitialState({
           loginUser: res.data,
         });
